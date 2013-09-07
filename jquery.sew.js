@@ -93,7 +93,10 @@
 
 		var fullStuff = this.getText();
 		var val = fullStuff.substring(0, startpos);
-		val = val.replace(this.expression, '$1' + this.options.token + replacement);
+
+        var tokenEntered = val.match(new RegExp(this.options.token));
+
+		val = val.replace(this.expression, '$1' + tokenEntered[0] + replacement);
 
 		var posfix = fullStuff.substring(startpos, fullStuff.length);
 		var separator = posfix.match(/^\s/) ? '' : ' ';
